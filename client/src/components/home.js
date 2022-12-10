@@ -1,12 +1,17 @@
 import React from "react";
+import ContentCreation from "./contentCreation";
+import List from "./list";
+import Blog from "./blog";
 
-const Home = ()=>{
+const Home = ({isLogin})=>{
+    console.log(isLogin);
     return(
-        <>
-        <h1>
-            This is my homepage
-        </h1>
-        </>
+        isLogin.userType==='admin'?<>
+        <div>
+            <ContentCreation />
+            <List/>
+        </div>
+        </>:<Blog/>
     )
 }
 

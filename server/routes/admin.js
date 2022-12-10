@@ -5,7 +5,7 @@ router.post('/add', async(req, res)=>{
     // add.create(req.body).then(experiments =()=>{
     //     res.send({
     //         expName:req.body.expName,
-    //         Description:req.body.Description,
+    //         description:req.body.description,
     //         level:req.body.level,
     //         subject:req.body.subject,
     //         matName:req.body.matName,
@@ -14,10 +14,10 @@ router.post('/add', async(req, res)=>{
     //         instructions:req.body.instructions,
     //     });
     // });
-
+    try {
     const addContent = new add({
         expName:req.body.expName,
-        Description:req.body.Description,
+        description:req.body.description,
         level:req.body.level,
         subject:req.body.subject,
         matName:req.body.matName,
@@ -25,7 +25,7 @@ router.post('/add', async(req, res)=>{
         safetyPercautions:req.body.safetyPercautions,
         instructions:req.body.instructions,
     });
-    try {
+    
         const val =await addContent.save();
         res.send(val)
     } catch (error) {

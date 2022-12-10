@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Header from './components/header';
 import Login from './components/login';
+import Home from './components/home';
 
 function App() {
+  const [isLogin, setisLogin] = useState({userType:"",state:false});
   return (
     <div>
-      <Header/>
       <hr />
-      <Login/>
+      {isLogin.state?<Home isLogin={isLogin}/>:<Login setisLogin={setisLogin}/>}
       <hr />
     </div>
 

@@ -3,7 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 const ContentCreation = () =>{
     const [expName, setexpName] = useState('');
-    const [Description, setDescription] = useState('');
+    const [description, setDescription] = useState('');
     const [level, setLevel] = useState('');
     const [subject, setSubject] = useState('');
     const [matName,setmatName] = useState('');
@@ -22,7 +22,7 @@ const ContentCreation = () =>{
     ];
 
 
-    const contentCreation = async (event) =>{
+    const handleContentCreation = async (event) =>{
         event.preventDefault();
     const response = await fetch("http://localhost:5000/admin/add",{
         method: 'POST',
@@ -31,7 +31,7 @@ const ContentCreation = () =>{
         },
         body: JSON.stringify({
             expName,
-            Description,
+            description,
             level,
             subject,
             // image
@@ -47,12 +47,9 @@ const ContentCreation = () =>{
     console.log(data);
     }
 
-
-
-
     return(
         <div>
-            <form>
+            <form className="shadow-none p-3 mb-5 bg-light rounded">
                 <label>Experiment Name</label>
                 <br />
                 <input 
@@ -68,7 +65,7 @@ const ContentCreation = () =>{
                 <input 
                 type="text" 
                 placeholder="one line description"
-                value={Description}
+                value={description}
                 onChange={event => setDescription(event.target.value)}
                 />
                 <br />
@@ -137,7 +134,7 @@ const ContentCreation = () =>{
                 />
                 <br />
                 
-                <button onClick={contentCreation} >save</button>
+                <button className="btn btn-success" onClick={handleContentCreation} >save</button>
 
             </form>
         </div>

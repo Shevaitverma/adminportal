@@ -16,7 +16,7 @@ const expSchema = new mongoose.Schema({
     image:{
         type:String,
     },
-    matname:{
+    matName:{
         type:String,
     },
     matQty:{

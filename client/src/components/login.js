@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import "../App.css";
-import ContentCreation from "./contentCreation";
 
-const Login =()=> {
+const Login =({setisLogin})=> {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // User Login info
   const database = [
     {
       username: "admin",
       password: "admin"
+    },
+    {
+      username: "user1",
+      password: "user1"
     }
   ];
 
@@ -35,7 +36,12 @@ const Login =()=> {
         // Invalid password
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
-        setIsSubmitted(true);
+        if(userData.username === "admin"){
+          setisLogin({userType: "admin", state: true})
+        }
+        else{
+          setisLogin({userType: "user1", state: true})
+        }
       }
     } else {
       // Username not found
@@ -49,9 +55,14 @@ const Login =()=> {
       <div className="error">{errorMessages.message}</div>
     );
 
-  // JSX code for login form
-  const renderForm = (
-    <div className="form">
+
+ 
+
+  return (
+    <div>
+      <div>
+        <div>Login</div>
+        <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
@@ -68,13 +79,6 @@ const Login =()=> {
         </div>
       </form>
     </div>
-  );
-
-  return (
-    <div>
-      <div>
-        <div>Admin</div>
-        {isSubmitted ? <div><ContentCreation /></div> : renderForm}
       </div>
     </div>
   );
